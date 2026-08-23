@@ -21,16 +21,11 @@ def calculate_emi(principal: float, annual_rate: float, tenure_years: int) -> fl
     Returns:
         The fixed monthly payment amount.
     """
-    # Convert annual percentage -> monthly decimal rate.
-    # 11% per year -> 0.11 per year -> 0.11/12 per month
     monthly_rate = annual_rate / 100 / 12
 
-    # Convert years -> number of monthly installments
     n_months = tenure_years * 12
 
-    # Zero-interest edge case: the general formula divides by
-    # ((1+r)^n - 1), which is 0 when r = 0 -> ZeroDivisionError.
-    # With no interest, you simply split the principal evenly.
+# edge case
     if monthly_rate == 0:
         return principal / n_months
 
@@ -38,3 +33,34 @@ def calculate_emi(principal: float, annual_rate: float, tenure_years: int) -> fl
     emi = principal * (monthly_rate * growth) / (growth - 1)
 
     return emi
+
+def generate_amortization_schedule(
+        principal: float, annual_rate: float, tenure_years: int
+) -> list[dict]:
+    monthly_rate = annual_rate/ 100 / 12
+    n_months = tenure_years * 12
+    emi = calculate_emi(principal, annual_rate, tenure_years)
+
+    schedule  = []
+    balance = principal
+
+    for month in range(1, n_months + 1):
+        interest_component = balance * monthly_rate
+        principal_component = emi - interest_component
+        balance = balance - principal_component
+
+        if month == n_months:
+            balance = max(balance, 0.0)
+
+        schedule.append({
+            "month": month,
+            "emi": round(emi, 2),
+            "interest": round(interest_component, 2),
+            "principal": round(principal_component, 2),
+            "balance": round(balance, 2),
+        })
+
+    return schedule
+
+def total_interest_paid(schedule: list[dict]) -> float:
+    return round(sum(row["interest"] for row in schedule), 2)

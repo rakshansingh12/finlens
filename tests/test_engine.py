@@ -2,7 +2,11 @@
 
 import pytest
 
-from src.engine import calculate_emi
+from src.engine import (
+    calculate_emi,
+    generate_amortization_schedule,
+    total_interest_paid,
+)
 
 
 def test_emi_standard_loan():
@@ -39,3 +43,35 @@ def test_longer_tenure_raises_total_interest():
     total_5yr = calculate_emi(800000, 11, 5) * 60
     total_7yr = calculate_emi(800000, 11, 7) * 84
     assert total_7yr > total_5yr
+
+def test_schedule_has_correct_length():
+    schedule = generate_amortization_schedule(800000, 11, 5)
+    assert len(schedule) == 60
+
+
+def test_schedule_ends_at_zero_balance():
+    """The whole point of the EMI formula: balance hits exactly zero at term end."""
+    schedule = generate_amortization_schedule(800000, 11, 5)
+    assert schedule[-1]["balance"] == pytest.approx(0.0, abs=0.01)
+
+
+def test_interest_component_decreases_over_time():
+    """Interest shrinks each month because the outstanding balance shrinks."""
+    schedule = generate_amortization_schedule(800000, 11, 5)
+    assert schedule[0]["interest"] > schedule[30]["interest"] > schedule[-1]["interest"]
+
+
+def test_principal_component_increases_over_time():
+    """The mirror image: more of each fixed EMI goes to principal over time."""
+    schedule = generate_amortization_schedule(800000, 11, 5)
+    assert schedule[0]["principal"] < schedule[30]["principal"] < schedule[-1]["principal"]
+
+
+def test_total_interest_matches_emi_shortcut():
+    """Cross-check: summing the schedule should match (EMI * n - principal).
+
+    Two independent derivations agreeing is strong evidence both are right.
+    """
+    schedule = generate_amortization_schedule(800000, 11, 5)
+    emi = calculate_emi(800000, 11, 5)
+    assert total_interest_paid(schedule) == pytest.approx(emi * 60 - 800000, abs=1.0)
