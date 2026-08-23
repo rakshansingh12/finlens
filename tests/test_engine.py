@@ -2,10 +2,12 @@
 
 import pytest
 
+from src.profile import FinancialProfile
 from src.engine import (
     calculate_emi,
     generate_amortization_schedule,
     total_interest_paid,
+    calculate_affordability,
 )
 
 
@@ -75,3 +77,33 @@ def test_total_interest_matches_emi_shortcut():
     schedule = generate_amortization_schedule(800000, 11, 5)
     emi = calculate_emi(800000, 11, 5)
     assert total_interest_paid(schedule) == pytest.approx(emi * 60 - 800000, abs=1.0)
+
+def test_affordability_matches_spec_example():
+    profile = FinancialProfile(
+        monthly_income=80000,
+        monthly_expenses=20000,
+        existing_emi=10000,
+        savings=300000,
+    )
+
+    result = calculate_affordability(profile, new_emi=17393.94)
+
+    assert result["total_emi"] == pytest.approx(27393.94, abs=0.01)
+    assert result["debt_to_income"] == pytest.approx(0.3424, abs=0.001)
+    assert result["monthly_surplus"] == pytest.approx(32606.06, abs=0.01)
+    assert result["emergency_fund_months"] == pytest.approx(15.0, abs=0.01)
+
+
+def test_affordability_handles_zero_income():
+    """A degenerate profile shouldn't crash -- ratios should be None, not a ZeroDivisionError."""
+    profile = FinancialProfile(
+        monthly_income=0,
+        monthly_expenses=20000,
+        existing_emi=0,
+        savings=100000,
+    )
+
+    result = calculate_affordability(profile, new_emi=5000)
+
+    assert result["debt_to_income"] is None
+    assert result["savings_rate"] is None

@@ -64,3 +64,19 @@ def generate_amortization_schedule(
 
 def total_interest_paid(schedule: list[dict]) -> float:
     return round(sum(row["interest"] for row in schedule), 2)
+
+def calculate_affordability(profile: FinancialProfile, new_emi: float) -> dict:
+    total_emi = profile.existing_emi + new_emi
+    debt_to_income = total_emi/profile.monthly_income if profile.monthly_income else None
+    monthly_surplus = profile.monthly_income - profile.monthly_expenses - total_emi
+    savings_rate = monthly_surplus/profile.monthly_income if profile.monthly_income else None
+    emergency_fund_months = profile.savings/profile.monthly_expenses if profile.monthly_income else None
+
+    return {
+        "total_emi": round(total_emi, 2),
+        "debt_to_income": round(debt_to_income, 4) if debt_to_income is not None else None,
+        "monthly_surplus": round(monthly_surplus, 2),
+        "savings_rate": round(savings_rate, 4) if savings_rate is not None else None,
+        "emergency_fund_months": round(emergency_fund_months, 2) if emergency_fund_months is not None else None,
+    }
+
