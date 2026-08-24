@@ -70,7 +70,15 @@ def calculate_affordability(profile: FinancialProfile, new_emi: float) -> dict:
     debt_to_income = total_emi/profile.monthly_income if profile.monthly_income else None
     monthly_surplus = profile.monthly_income - profile.monthly_expenses - total_emi
     savings_rate = monthly_surplus/profile.monthly_income if profile.monthly_income else None
-    emergency_fund_months = profile.savings/profile.monthly_expenses if profile.monthly_income else None
+    emergency_fund_months = (
+    profile.savings / (total_emi + profile.monthly_expenses)
+    if (total_emi + profile.monthly_expenses) else None
+)
+
+    expense_coverage_months = (
+    profile.savings / profile.monthly_expenses
+    if profile.monthly_expenses else None
+)
 
     return {
         "total_emi": round(total_emi, 2),
@@ -78,5 +86,6 @@ def calculate_affordability(profile: FinancialProfile, new_emi: float) -> dict:
         "monthly_surplus": round(monthly_surplus, 2),
         "savings_rate": round(savings_rate, 4) if savings_rate is not None else None,
         "emergency_fund_months": round(emergency_fund_months, 2) if emergency_fund_months is not None else None,
+        "expense_coverage_months": round(expense_coverage_months, 2) if expense_coverage_months is not None else None,
     }
 

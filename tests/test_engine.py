@@ -91,7 +91,8 @@ def test_affordability_matches_spec_example():
     assert result["total_emi"] == pytest.approx(27393.94, abs=0.01)
     assert result["debt_to_income"] == pytest.approx(0.3424, abs=0.001)
     assert result["monthly_surplus"] == pytest.approx(32606.06, abs=0.01)
-    assert result["emergency_fund_months"] == pytest.approx(15.0, abs=0.01)
+    assert result["emergency_fund_months"] == pytest.approx(6.33, abs=0.01)
+    assert result["expense_coverage_months"] == pytest.approx(15.0, abs=0.01)
 
 
 def test_affordability_handles_zero_income():
