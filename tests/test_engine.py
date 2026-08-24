@@ -2,7 +2,7 @@
 
 import pytest
 
-from src.profile import FinancialProfile, LoanScenario
+from src.profile import FinancialProfile, LoanScenario, SimulationAssumptions
 from src.engine import (
     calculate_emi,
     generate_amortization_schedule,
@@ -11,6 +11,7 @@ from src.engine import (
     evaluate_scenario,
     compare_scenarios,
 )
+from src.simulation import simulate_scenario
 
 
 def test_emi_standard_loan():
@@ -165,3 +166,50 @@ def test_empty_scenario_list_raises():
     profile = FinancialProfile(80000, 20000, 10000, 300000)
     with pytest.raises(ValueError):
         compare_scenarios(profile, [])
+
+def test_simulation_is_reproducible_with_a_seed():
+    """Same seed must give identical results, or nothing downstream is verifiable."""
+    profile = FinancialProfile(80000, 20000, 10000, 300000)
+    a = SimulationAssumptions(n_trials=1000, seed=42)
+
+    first = simulate_scenario(profile, 27393.94, a)
+    second = simulate_scenario(profile, 27393.94, a)
+
+    assert first == second
+
+
+def test_different_seeds_give_different_results():
+    profile = FinancialProfile(80000, 20000, 10000, 300000)
+    r1 = simulate_scenario(profile, 27393.94, SimulationAssumptions(n_trials=1000, seed=1))
+    r2 = simulate_scenario(profile, 27393.94, SimulationAssumptions(n_trials=1000, seed=2))
+
+    assert r1["median_ending_savings"] != r2["median_ending_savings"]
+
+
+def test_larger_emi_increases_risk():
+    """A property test: more debt service must not reduce simulated risk."""
+    profile = FinancialProfile(55000, 28000, 8000, 120000)
+    a = SimulationAssumptions(n_trials=2000)
+
+    small = simulate_scenario(profile, 15000, a)
+    large = simulate_scenario(profile, 30000, a)
+
+    assert large["p_savings_depleted"] >= small["p_savings_depleted"]
+    assert large["mean_negative_months"] >= small["mean_negative_months"]
+
+
+def test_probabilities_are_valid():
+    profile = FinancialProfile(80000, 20000, 10000, 300000)
+    result = simulate_scenario(profile, 27393.94, SimulationAssumptions(n_trials=1000))
+
+    for key in ["p_negative_cashflow_month", "p_thin_margin_month", "p_savings_depleted"]:
+        assert 0.0 <= result[key] <= 1.0
+
+
+def test_negative_month_count_within_horizon():
+    profile = FinancialProfile(55000, 28000, 8000, 120000)
+    a = SimulationAssumptions(n_trials=1000, horizon_months=24)
+    result = simulate_scenario(profile, 25000, a)
+
+    assert 0 <= result["median_negative_months"] <= 24
+    assert 0 <= result["p95_negative_months"] <= 24
