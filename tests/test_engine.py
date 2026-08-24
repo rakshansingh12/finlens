@@ -12,7 +12,14 @@ from src.engine import (
     compare_scenarios,
 )
 from src.simulation import simulate_scenario
-
+from src.engine import evaluate_scenario
+from src.scoring import (
+    borrowing_stress_score,
+    score_debt_burden,
+    score_liquidity,
+    score_interest_load,
+    WEIGHTS,
+)
 
 def test_emi_standard_loan():
     """8L at 11% over 5 years should produce ~17,394/month.
@@ -213,3 +220,52 @@ def test_negative_month_count_within_horizon():
 
     assert 0 <= result["median_negative_months"] <= 24
     assert 0 <= result["p95_negative_months"] <= 24
+
+def test_weights_sum_to_one():
+    """If weights don't sum to 1, the composite isn't on a 0-100 scale."""
+    assert sum(WEIGHTS.values()) == pytest.approx(1.0)
+
+
+def test_score_bounded_zero_to_hundred():
+    profile = FinancialProfile(55000, 28000, 8000, 50000)
+    result = borrowing_stress_score(evaluate_scenario(profile, LoanScenario("X", 900000, 14, 3)))
+    assert 0 <= result["stress_score"] <= 100
+
+
+def test_higher_dti_scores_higher_stress():
+    assert score_debt_burden(0.50) > score_debt_burden(0.30)
+
+
+def test_more_liquidity_scores_lower_stress():
+    assert score_liquidity(12) < score_liquidity(6) < score_liquidity(1)
+
+
+def test_missing_ratios_score_maximum_stress():
+    """A None ratio means a degenerate profile -- treat as maximum stress,
+    never as zero stress, which would be dangerously wrong."""
+    assert score_debt_burden(None) == 100.0
+    assert score_liquidity(None) == 100.0
+
+
+def test_stretched_profile_scores_higher_than_comfortable():
+    comfortable = FinancialProfile(80000, 20000, 10000, 300000)
+    stretched = FinancialProfile(55000, 28000, 8000, 120000)
+    loan = LoanScenario("A", 800000, 11, 5)
+
+    c = borrowing_stress_score(evaluate_scenario(comfortable, loan))["stress_score"]
+    s = borrowing_stress_score(evaluate_scenario(stretched, loan))["stress_score"]
+
+    assert s > c
+
+
+def test_components_are_exposed():
+    """The score must never be a black box -- components drive explainability."""
+    profile = FinancialProfile(80000, 20000, 10000, 300000)
+    result = borrowing_stress_score(evaluate_scenario(profile, LoanScenario("A", 800000, 11, 5)))
+
+    assert set(result["components"]) == set(WEIGHTS)
+    assert result["largest_contributor"] in WEIGHTS
+
+
+def test_zero_interest_loan_has_no_interest_load():
+    assert score_interest_load(0, 500000) == 0.0
