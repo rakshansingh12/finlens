@@ -2,12 +2,14 @@
 
 import pytest
 
-from src.profile import FinancialProfile
+from src.profile import FinancialProfile, LoanScenario
 from src.engine import (
     calculate_emi,
     generate_amortization_schedule,
     total_interest_paid,
     calculate_affordability,
+    evaluate_scenario,
+    compare_scenarios,
 )
 
 
@@ -46,6 +48,7 @@ def test_longer_tenure_raises_total_interest():
     total_7yr = calculate_emi(800000, 11, 7) * 84
     assert total_7yr > total_5yr
 
+
 def test_schedule_has_correct_length():
     schedule = generate_amortization_schedule(800000, 11, 5)
     assert len(schedule) == 60
@@ -78,6 +81,7 @@ def test_total_interest_matches_emi_shortcut():
     emi = calculate_emi(800000, 11, 5)
     assert total_interest_paid(schedule) == pytest.approx(emi * 60 - 800000, abs=1.0)
 
+
 def test_affordability_matches_spec_example():
     profile = FinancialProfile(
         monthly_income=80000,
@@ -108,3 +112,56 @@ def test_affordability_handles_zero_income():
 
     assert result["debt_to_income"] is None
     assert result["savings_rate"] is None
+
+
+def test_evaluate_scenario_merges_loan_and_affordability():
+    profile = FinancialProfile(80000, 20000, 10000, 300000)
+    scenario = LoanScenario("A", 800000, 11, 5)
+
+    result = evaluate_scenario(profile, scenario)
+
+    assert result["emi"] == pytest.approx(17393.94, abs=0.01)
+    assert result["total_interest"] == pytest.approx(243636.30, abs=1.0)
+    assert result["debt_to_income"] == pytest.approx(0.3424, abs=0.001)
+
+
+def test_baseline_is_excluded_from_comparisons():
+    """Comparisons hold only non-baseline scenarios, since a baseline
+    has no meaningful delta against itself."""
+    profile = FinancialProfile(80000, 20000, 10000, 300000)
+    scenarios = [LoanScenario("A", 800000, 11, 5), LoanScenario("B", 600000, 11, 5)]
+
+    out = compare_scenarios(profile, scenarios)
+
+    assert out["baseline"] == "A"
+    assert len(out["scenarios"]) == 2        # both evaluated
+    assert len(out["comparisons"]) == 1      # only B compared
+    assert out["comparisons"][0]["label"] == "B"
+    assert out["comparisons"][0]["vs_baseline"] == "A"
+
+
+def test_smaller_loan_saves_interest_and_improves_liquidity():
+    profile = FinancialProfile(80000, 20000, 10000, 300000)
+    scenarios = [LoanScenario("A", 800000, 11, 5), LoanScenario("B", 600000, 11, 5)]
+
+    smaller = compare_scenarios(profile, scenarios)["comparisons"][0]
+
+    assert smaller["total_interest_delta"] < 0
+    assert smaller["emergency_fund_months_delta"] > 0
+
+
+def test_longer_tenure_lowers_emi_but_raises_total_interest():
+    """The core trade-off: cheaper monthly, more expensive overall."""
+    profile = FinancialProfile(80000, 20000, 10000, 300000)
+    scenarios = [LoanScenario("A", 800000, 11, 5), LoanScenario("C", 800000, 11, 7)]
+
+    longer = compare_scenarios(profile, scenarios)["comparisons"][0]
+
+    assert longer["emi_delta"] < 0
+    assert longer["total_interest_delta"] > 0
+
+
+def test_empty_scenario_list_raises():
+    profile = FinancialProfile(80000, 20000, 10000, 300000)
+    with pytest.raises(ValueError):
+        compare_scenarios(profile, [])

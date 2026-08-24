@@ -88,4 +88,54 @@ def calculate_affordability(profile: FinancialProfile, new_emi: float) -> dict:
         "emergency_fund_months": round(emergency_fund_months, 2) if emergency_fund_months is not None else None,
         "expense_coverage_months": round(expense_coverage_months, 2) if expense_coverage_months is not None else None,
     }
+def evaluate_scenario(profile: FinancialProfile, scenario: LoanScenario) -> dict:
+    emi = calculate_emi(scenario.principal, scenario.annual_rate, scenario.tenure_years)
 
+    schedule = generate_amortization_schedule(
+        scenario.principal, scenario.annual_rate, scenario.tenure_years
+    )
+    total_interest = total_interest_paid(schedule)
+
+    affordability = calculate_affordability(profile, new_emi=emi)
+
+    return {
+        "label": scenario.label,
+        "principal": scenario.principal,
+        "annual_rate": scenario.annual_rate,
+        "tenure_years": scenario.tenure_years,
+        "emi": round(emi, 2),
+        "total_interest": total_interest,
+        "total_repayment": round(scenario.principal + total_interest, 2),
+        **affordability,
+    }
+
+
+def compare_scenarios(profile: FinancialProfile, scenarios: list[LoanScenario]) -> dict:
+    if not scenarios:
+        raise ValueError("compare_scenarios requires at least one scenario")
+
+    results = [evaluate_scenario(profile, s) for s in scenarios]
+    baseline = results[0]
+
+    comparisons = []
+    for result in results[1:]:
+        comparisons.append({
+            "label": result["label"],
+            "vs_baseline": baseline["label"],
+            "emi_delta": round(result["emi"] - baseline["emi"], 2),
+            "total_interest_delta": round(
+                result["total_interest"] - baseline["total_interest"], 2
+            ),
+            "monthly_surplus_delta": round(
+                result["monthly_surplus"] - baseline["monthly_surplus"], 2
+            ),
+            "emergency_fund_months_delta": round(
+                result["emergency_fund_months"] - baseline["emergency_fund_months"], 2
+            ),
+        })
+
+    return {
+        "baseline": baseline["label"],
+        "scenarios": results,
+        "comparisons": comparisons,
+    }
