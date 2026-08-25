@@ -1,0 +1,310 @@
+[
+  {
+    "case": 1,
+    "question": null,
+    "explanation": "Borrowing a smaller loan amount in Scenario B (310382.3459704156) compared to the baseline Scenario A (477511.3014929471) significantly reduces your ongoing payments and total interest costs over the 5-year tenure. Specifically, Scenario B reflects an emi_delta of -4019.76, bringing the monthly EMI down from 11485.03 in Scenario A to 7465.27 in Scenario B. This shift also delivers a total_interest_delta of -74056.74, while reducing the debt-to-income ratio from 0.3209 to 0.2402.\n\nThis reduction in monthly loan payments impacts your ongoing cash flow and risk profile. In Scenario A, your monthly surplus is 13905.2 with an emergency fund covering 0.51 months of expenses, resulting in an \"elevated\" stress score of 50.99. In Scenario B, your monthly surplus rises to 17924.97 and your emergency fund covers 0.57 months, driving a stress_score_delta of -8.33 down to a \"moderate\" score of 42.66. Liquidity remains the largest stress driver across both scenarios.\n\nLooking at the simulated risk over a 24-month horizon across 3000 trials, Scenario A shows a simulated depletion probability of 19.1% and a worst-case ending savings of 51203.95. Scenario B lowers the simulated depletion probability to 12.8% (a depletion_risk_delta of -0.0627) and increases worst-case ending savings to 147678.43. The core trade-off is receiving a lower loan principal in Scenario B versus accepting higher total interest (211590.74 in Scenario A vs. 137534.0 in Scenario B) and higher total repayment costs (689102.04 vs. 447916.35) for the larger loan amount in Scenario A.\n\nPlease keep in mind that simulated probabilities are model outputs under stated assumptions, not absolute forecasts or certainties about future outcomes. Absolute probabilities depend on unvalidated shock-rate assumptions and should not be read as calibrated forecasts; however, relative comparisons between scenarios are valid as both share identical assumptions. I am an explainer presenting these quantitative findings, not a licensed financial advisor, and this breakdown does not constitute a financial recommendation.",
+    "faithfulness": {
+      "numbers_stated": 27,
+      "numbers_checked": 15,
+      "numbers_supported": 15,
+      "numbers_unsupported": 0,
+      "unsupported_values": [],
+      "faithfulness_rate": 1.0,
+      "passed": true
+    }
+  },
+  {
+    "case": 2,
+    "question": "Should I be worried about taking the larger loan?",
+    "explanation": "Taking the larger loan (Scenario A) introduces severe financial strain according to the analysis. Under Scenario A, your monthly surplus is -12484.79, resulting in a debt-to-income ratio of 0.7156 and a stress score of 77.1 out of 100, which puts it in the \"high\" stress band due to debt burden. Over a 24-month horizon across 3000 trials, Scenario A resulted in a simulated depletion probability of 100.0% and a simulated worst-case ending savings of -438309.45.\n\nOpting for the smaller loan (Scenario B) significantly reduces these pressures compared to Scenario A. Based on the pre-computed comparison:\n* The monthly EMI is lower, with an EMI delta of -10873.61 (bringing total EMI including existing debt down to 24850.88).\n* Total interest costs drop, with a total interest delta of -71666.06.\n* The overall stress score improves by a stress score delta of -7.62 (lowering the score to 69.48).\n* Risk drops considerably, showing a depletion risk delta of -0.644, which reduces the simulated depletion probability to 35.6%.\n\nEach scenario presents clear trade-offs. Scenario A requires a monthly loan EMI of 31067.45 and provides 2.5 months of emergency funds, but it creates a heavy cash flow deficit. Scenario B lowers the monthly loan EMI to 20193.84, provides 3.03 months of emergency funds, and reduces the worst-case ending savings to -177342.81. However, Scenario B still leaves a negative monthly surplus of -1611.18 and remains in the \"high\" stress band, meaning both options create budget deficits.\n\nPlease keep in mind that these simulated depletion probabilities depend on unvalidated shock-rate assumptions and should not be read as calibrated forecasts. Relative comparisons between scenarios are supported since all scenarios share identical assumptions. These figures represent model output probabilities rather than certain future outcomes. I am an AI explainer, not a licensed financial advisor, and this breakdown is provided strictly to explain the data rather than recommend a specific decision.",
+    "faithfulness": {
+      "numbers_stated": 21,
+      "numbers_checked": 12,
+      "numbers_supported": 12,
+      "numbers_unsupported": 0,
+      "unsupported_values": [],
+      "faithfulness_rate": 1.0,
+      "passed": true
+    }
+  },
+  {
+    "case": 3,
+    "question": "Which option leaves me with the most breathing room?",
+    "explanation": "Scenario B leaves you with significantly more breathing room, both month-to-month and in overall financial flexibility. Choosing Scenario B lowers your individual loan payment (EMI) by 6128.13, reducing it from 17508.94 in Scenario A to 11380.81. This increases your monthly cash surplus to 27975.8 (compared to 21847.67 in Scenario A) and drops your debt-to-income ratio from 0.3809 down to 0.2889.\n\nThis lower monthly burden translates directly to higher financial resilience. In Scenario B, your overall financial stress score drops by 13.71 points down to 27.24 out of 100, compared to 40.95 in Scenario A. Your emergency fund coverage also expands from 4.43 months to 5.13 months. Over the 7-year tenure, Scenario B reduces total interest paid by 194562.31, bringing total interest costs down to 361329.97 compared to 555892.28 in Scenario A.\n\nIn a 24-month simulation across 3,000 trials, Scenario B shows a simulated depletion probability of 0.1%, compared to 0.8% in Scenario A, alongside higher worst-case ending savings of 483576.16 versus 336501.04. Please keep in mind that absolute probabilities depend on unvalidated shock-rate assumptions and should not be read as calibrated forecasts; however, relative comparisons between the scenarios are supported since both share identical assumptions.\n\nThe primary trade-off comes down to the size of the loan. Scenario B provides a smaller loan amount of 594658.2045168651 compared to 914858.7761797925 in Scenario A. While Scenario B minimizes total repayment (955988.17 versus 1470751.06) and improves cash flow, Scenario A delivers more total capital if you require a larger upfront sum. Note that I am an AI explainer, not a licensed financial advisor, and this breakdown is meant to illustrate model outputs so you can evaluate the options that best fit your goals.",
+    "faithfulness": {
+      "numbers_stated": 27,
+      "numbers_checked": 16,
+      "numbers_supported": 15,
+      "numbers_unsupported": 1,
+      "unsupported_values": [
+        100.0
+      ],
+      "faithfulness_rate": 0.9375,
+      "passed": false
+    }
+  },
+  {
+    "case": 4,
+    "question": "What is the main risk here?",
+    "explanation": "Across both analyzed options, the primary driver of potential financial pressure is **liquidity**. Both options remain within a \"low\" overall stress band\u2014with Scenario A receiving a stress score of 22.37 out of 100 and Scenario B receiving a score of 20.36 out of 100\u2014yet liquidity stands out as the main risk factor in both cases.\n\nIn baseline Scenario A, borrowing a loan amount of 723929.8260725377 creates a monthly payment (EMI) of 16523.99. This setup leaves a monthly cash surplus of 72984.93 and an emergency fund covering 4.62 months of expenses. Under the simulation model, Scenario A has a depletion probability of 0.1% and a worst-case ending savings figure of 1318833.45.\n\nScenario B reduces the loan amount to 470554.3869471495, which lowers the monthly payment to 10740.59. Relative to Scenario A, this results in an EMI delta of -5783.4 and a total interest delta of -93628.38. This smaller commitment expands the monthly surplus to 78768.32 and increases the emergency fund to 5.01 months, reflecting a stress score delta of -2.01 and a depletion risk delta of -0.001 (bringing the simulated depletion probability to 0.0%).\n\nThe trade-off comes down to managing liquidity reserves against loan size. While Scenario B retains more monthly cash flow and buffer, both scenarios present low overall risk scores. Note that absolute probabilities depend on unvalidated shock-rate assumptions and should not be read as calibrated forecasts. Relative comparisons between scenarios are supported, since all scenarios share identical assumptions. I am an automated explainer, not a licensed financial advisor, and this analysis is not a financial verdict or recommendation.",
+    "faithfulness": {
+      "numbers_stated": 19,
+      "numbers_checked": 11,
+      "numbers_supported": 9,
+      "numbers_unsupported": 2,
+      "unsupported_values": [
+        100.0,
+        100.0
+      ],
+      "faithfulness_rate": 0.8182,
+      "passed": false
+    }
+  },
+  {
+    "case": 5,
+    "question": null,
+    "explanation": "The primary finding in this analysis is the stark difference in monthly cash flow stability between the two borrowing options. Scenario A results in a negative monthly surplus of -4611.38, meaning monthly obligations outpace income. In contrast, Scenario B yields a positive monthly surplus of 5240.01. Comparing Scenario B to Scenario A shows a monthly loan payment (EMI) reduction of -9851.39, lowering the total monthly EMI obligations (including existing debts) from 36220.79 down to 26369.4.\n\nScenario A involves a loan amount of 860487.8480859253 at an annual rate of 10.940014247735931% over a 3-year tenure, leading to total interest of 152798.06 and a overall debt-to-income ratio of 0.5836. Scenario B reduces the loan amount to 559317.1012558514 at the same interest rate and tenure. This lowers the total interest by a delta of -53479.34 to 99318.72, brings the total repayment down to 658635.82 (compared to 1013285.91 in Scenario A), and reduces the debt-to-income ratio to 0.4249. As a result, the stress score decreases by a delta of -14.86, shifting from a \"high\" stress band score of 79.01 (driven mainly by debt burden) in Scenario A to an \"elevated\" stress band score of 64.15 (driven mainly by liquidity) in Scenario B.\n\nRisk simulations across 3,000 trials over a 24-month horizon highlight significant operational differences. Scenario A shows a simulated depletion probability of 99.6%, with a simulated median of 22 negative months and a worst-case ending savings balance of -390181.0. Scenario B reflects a depletion risk delta of -0.6767, dropping the simulated depletion probability to 31.9%, with 3 simulated median negative months and a worst-case ending savings balance of -153747.64. Emergency fund coverage shifts slightly from 1.08 months in Scenario A to 1.27 months in Scenario B.\n\nPlease note that these simulated probabilities reflect model outputs under stated assumptions over a 24-month period and are not guaranteed forecasts of future performance. Absolute probabilities depend on unvalidated shock-rate assumptions and should not be read as calibrated forecasts, though relative comparisons between the scenarios are supported because both share identical underlying assumptions. This summary is provided for informational purposes to highlight key financial trade-offs and does not constitute financial advice or a recommendation for a specific option.",
+    "faithfulness": {
+      "numbers_stated": 31,
+      "numbers_checked": 15,
+      "numbers_supported": 15,
+      "numbers_unsupported": 0,
+      "unsupported_values": [],
+      "faithfulness_rate": 1.0,
+      "passed": true
+    }
+  },
+  {
+    "case": 6,
+    "question": "Should I be worried about taking the larger loan?",
+    "explanation": "Based on the quantitative analysis, taking the larger loan (Scenario A, with a loan amount of 542659.2333456458) does not move your profile out of the \"low\" financial stress category. Scenario A results in a stress score of 13.76 out of 100 and a simulated depletion probability of 0.0%. For comparison, the smaller loan (Scenario B, with a loan amount of 352728.5016746698) carries a stress score of 12.03 out of 100, reflecting a stress score delta of -1.73 compared to Scenario A.\n\nThe main difference between the options lies in your ongoing monthly cash flow and total interest costs. Scenario A requires a monthly EMI of 18893.95 (a total EMI including existing debt of 21951.9) and incurs 137522.98 in total interest. Scenario B offers an EMI delta of -6612.88 (a monthly EMI of 12281.07) and a total interest delta of -48133.04 (total interest of 89389.94). As a result, Scenario A leaves you with a monthly surplus of 63769.08 and an emergency fund covering 7.23 months, whereas Scenario B leaves a monthly surplus of 70381.97 and 7.94 months of emergency fund coverage.\n\nIn both scenarios, the largest driver of stress is the interest load. In the simulation settings of 3000 trials over a 24-month horizon, Scenario A shows a median of 1 negative month and a worst-case ending savings of 1345432.21. Scenario B shows a median of 0 negative months and a worst-case ending savings of 1504141.33. Please keep in mind that absolute probabilities depend on unvalidated shock-rate assumptions and should not be read as calibrated forecasts of future outcomes, though relative comparisons between these scenarios are supported.\n\nI am explaining these quantitative model outputs and am not a licensed financial advisor, so I cannot provide a verdict or advice on what you should do. The metrics illustrate a clear trade-off: the larger loan reduces your monthly surplus and increases total interest, but under the model's assumptions, both options maintain a low stress profile and low depletion risk.",
+    "faithfulness": {
+      "numbers_stated": 25,
+      "numbers_checked": 16,
+      "numbers_supported": 14,
+      "numbers_unsupported": 2,
+      "unsupported_values": [
+        100.0,
+        100.0
+      ],
+      "faithfulness_rate": 0.875,
+      "passed": false
+    }
+  },
+  {
+    "case": 7,
+    "question": "Which option leaves me with the most breathing room?",
+    "explanation": "Based on the quantitative results, **Scenario B** leaves you with the most breathing room. Scenario B lowers your individual monthly loan payment (EMI) to 11961.71 compared to 18402.64 in Scenario A, which is a monthly EMI reduction of 6440.93. This lower commitment increases your monthly surplus to 30616.18 (compared to 24175.25 in Scenario A) and drops your debt-to-income ratio from 0.337 to 0.2296.\n\nScenario B also improves your financial safety net and reduces overall stress. Under Scenario B, your emergency fund extends to cover 2.93 months of expenses compared to 2.4 months under Scenario A. This reduces your stress score by 8.8 points (moving from 39.97 down to 31.17 out of 100). Furthermore, total interest costs drop from 462300.05 in Scenario A to 300495.03 in Scenario B, representing a total interest reduction of 161805.02.\n\nIn a 24-month simulation across 3,000 trials, Scenario B resulted in a simulated depletion probability of 1.1% compared to 2.7% in Scenario A, which is a risk reduction of 0.016. The simulated worst-case ending savings were 465233.09 in Scenario B versus 310650.77 in Scenario A. Note that these absolute probabilities rely on unvalidated shock-rate assumptions and should not be viewed as certainty or calibrated forecasts; however, the relative comparison between the two options is valid because both use identical model settings.\n\nThe main trade-off is that Scenario B provides a smaller loan amount of 560748.367469538 compared to 862689.7961069816 in Scenario A. I am a financial analysis explainer and not a licensed financial advisor, so I do not offer financial advice or recommend specific loan decisions.",
+    "faithfulness": {
+      "numbers_stated": 25,
+      "numbers_checked": 14,
+      "numbers_supported": 13,
+      "numbers_unsupported": 1,
+      "unsupported_values": [
+        100.0
+      ],
+      "faithfulness_rate": 0.9286,
+      "passed": false
+    }
+  },
+  {
+    "case": 8,
+    "question": "What is the main risk here?",
+    "explanation": "The primary source of financial risk identified in both scenarios is the overall interest load, driven by an annual interest rate of 13.837279414231315%. In baseline Scenario A, total interest costs accumulate to 406537.0 on a loan amount of 851659.1758718215. Even in Scenario B, where the loan amount is lower at 553578.4643166839, total interest remains the single largest stress driver at 264248.98.\n\nComparing the two scenarios highlights how borrowing less alters overall financial exposure. Compared to Baseline A, Scenario B reduces the monthly EMI by 6116.23 and total interest by 142288.02. This reduction lowers the stress score by 3.19 points (from 20.25 down to 17.06), increases monthly surplus from 35892.11 to 42008.34, and strengthens the emergency fund buffer from 7.4 months to 8.82 months.\n\nRegarding cash depletion risk, both scenarios resulted in a 0.0% simulated depletion probability across 3000 trials over a 24-month horizon, placing both options in the \"low\" stress band. However, absolute probabilities depend on unvalidated shock-rate assumptions and should not be treated as calibrated forecasts. These simulation figures represent model outputs under stated assumptions rather than guaranteed future results. I am an automated explainer sharing these quantitative outputs, not a licensed financial advisor.",
+    "faithfulness": {
+      "numbers_stated": 17,
+      "numbers_checked": 9,
+      "numbers_supported": 9,
+      "numbers_unsupported": 0,
+      "unsupported_values": [],
+      "faithfulness_rate": 1.0,
+      "passed": true
+    }
+  },
+  {
+    "case": 9,
+    "question": null,
+    "explanation": "Taking a smaller loan in Scenario B compared to the baseline Scenario A significantly reduces monthly payment obligations, overall interest costs, and financial stress. Under baseline Scenario A (with a loan amount of 670451.6918454744), the monthly EMI is 17400.43, leading to a total repayment of 835220.45. By comparison, Scenario B reduces the loan amount to 435793.5996995584, resulting in an emi_delta of -6090.15 (lowering monthly EMI to 11310.28) and a total_interest_delta of -57669.07 (reducing total interest from 164768.76 in Scenario A to 107099.69 in Scenario B).\n\nThe two options create distinct cash flow trade-offs. Scenario A requires a total EMI including existing debt of 22639.04, resulting in a debt-to-income ratio of 0.5483 and leaving a monthly surplus of 7904.33. This places Scenario A in an \"elevated\" stress band with a stress score of 57.96 out of 100, supported by 2.9 months of emergency funds. Scenario B lowers the total EMI including existing debt to 16548.89, improving the debt-to-income ratio to 0.4008 and yielding a higher monthly surplus of 13994.48. This shifts the stress band to \"moderate\" with a stress score of 38.9 out of 100\u2014a stress_score_delta of -19.06 compared to Scenario A\u2014and increases emergency fund coverage to 3.55 months. For both scenarios, the largest stress driver is identified as debt burden.\n\nIn a 24-month simulation across 3000 trials, Scenario A yields a simulated depletion probability of 9.6% and a worst-case ending savings of 18777.0. Scenario B shows a simulated depletion probability of 2.5%\u2014a depletion_risk_delta of -0.0713 relative to Scenario A\u2014and a worst-case ending savings of 164940.6. Both scenarios reflect a simulated median of 1 negative month under financial shock. Please note that absolute probabilities depend on unvalidated shock-rate assumptions and should not be read as calibrated forecasts; relative comparisons between these scenarios are supported because both share identical underlying assumptions.\n\nThe decision involves a trade-off between maximizing borrowing capacity and maintaining financial safety margins. Scenario A provides access to a higher initial loan amount but results in tighter monthly surplus and higher overall financial exposure. Scenario B provides less funding up front, but requires a lower total repayment of 542893.29, preserving a larger cash cushion against unexpected expenses. I am an automated explainer sharing quantitative analysis outputs, not a licensed financial advisor, and this analysis does not serve as a recommendation for any specific financial path.",
+    "faithfulness": {
+      "numbers_stated": 31,
+      "numbers_checked": 19,
+      "numbers_supported": 17,
+      "numbers_unsupported": 2,
+      "unsupported_values": [
+        100.0,
+        100.0
+      ],
+      "faithfulness_rate": 0.8947,
+      "passed": false
+    }
+  },
+  {
+    "case": 10,
+    "question": "Should I be worried about taking the larger loan?",
+    "explanation": "Taking the larger loan (Scenario A) creates a noticeably higher financial burden than taking the smaller loan (Scenario B), though both scenarios remain in the \"moderate\" stress band. Under Scenario A, your monthly EMI is 15508.72, bringing your total monthly EMI (including existing debts) to 22413.5 and pushing your debt-to-income ratio to 0.4086. By contrast, Scenario B lowers your monthly EMI by 5428.05 and reduces your total interest paid by 36984.7 over the 3-year tenure.\n\nThe key trade-off lies between monthly cash flow cushion and risk exposure. Under Scenario A, your monthly surplus drops to 18324.63 (compared to 23752.69 in Scenario B), and your emergency fund provides 2.81 months of coverage (compared to 3.3 months in Scenario B). Over a 24-month simulation horizon across 3,000 trials, Scenario A shows a simulated depletion probability of 3.3% with a worst-case ending savings of 210772.4, whereas Scenario B shows a depletion probability of 1.5% (a depletion risk delta of -0.0183) and a worst-case ending savings of 341045.6.\n\nYour overall stress score in Scenario A is 42.12 out of 100, driven primarily by debt burden. Switching to Scenario B lowers the stress score by a delta of -14.16 down to 27.96 out of 100, where liquidity becomes the largest driver instead. Please keep in mind that simulated probabilities are model outputs based on specific assumptions, not calibrated forecasts or guaranteed outcomes; absolute probabilities depend on unvalidated shock-rate assumptions, though relative comparisons between the two scenarios share identical rules.\n\nI am an automated explainer sharing quantitative analysis, not a licensed financial advisor. Deciding whether to take the larger loan depends on whether the additional loan amount justifies paying 105670.56 in total interest instead of 68685.86, as well as holding a tighter monthly surplus.",
+    "faithfulness": {
+      "numbers_stated": 24,
+      "numbers_checked": 13,
+      "numbers_supported": 11,
+      "numbers_unsupported": 2,
+      "unsupported_values": [
+        100.0,
+        100.0
+      ],
+      "faithfulness_rate": 0.8462,
+      "passed": false
+    }
+  },
+  {
+    "case": 11,
+    "question": "Which option leaves me with the most breathing room?",
+    "explanation": "Scenario B leaves you with more breathing room across monthly cash flow, overall stress, and safety reserves. By borrowing a smaller loan amount of 216015.86088006818 in Scenario B compared to 332332.09366164333 in Scenario A, your monthly EMI decreases from 7842.79 to 5097.82 (an EMI delta of -2744.97). As a result, Scenario B provides a higher monthly surplus of 31797.98 compared to 29053.0 in Scenario A, while lowering your debt-to-income ratio from 0.2262 to 0.1784.\n\nScenario B also expands your financial safety net and reduces long-term costs. It builds an emergency fund covering 8.1 months of expenses compared to 7.32 months in Scenario A. Over the 5-year tenure, total interest drops from 138235.48 in Scenario A to 89853.02 in Scenario B, reflecting a total interest delta of -48382.46. This lowers your financial stress score from 18.45 to 16.65 (a stress score delta of -1.8), keeping both options in the low stress band. Furthermore, Scenario B results in a simulated worst-case ending savings of 628101.43, compared to 562221.91 in Scenario A.\n\nIn a 24-month simulation across 3000 trials, both scenarios showed a simulated depletion probability of 0.0%, yielding a depletion risk delta of 0.0. Please note that absolute probabilities depend on unvalidated shock-rate assumptions and should not be taken as calibrated forecasts of future outcomes. Relative comparisons between these options are supported because both scenarios use identical underlying model assumptions.",
+    "faithfulness": {
+      "numbers_stated": 24,
+      "numbers_checked": 13,
+      "numbers_supported": 13,
+      "numbers_unsupported": 0,
+      "unsupported_values": [],
+      "faithfulness_rate": 1.0,
+      "passed": true
+    }
+  },
+  {
+    "case": 12,
+    "question": "What is the main risk here?",
+    "explanation": "The main financial risk highlighted in this analysis is severe cash-flow strain caused by high debt burden, particularly in baseline Scenario A. In Scenario A, the debt-to-income ratio reaches 0.7204, leaving a very small monthly surplus of 1106.81 and an emergency fund covering just 2.89 months of expenses. Under these conditions, the stress score is 71.92 out of 100 (in the \"high\" stress band), leading to a simulated depletion probability of 28.0%, a simulated median of 9 negative months, and a worst-case ending savings balance of -132201.22 over a 24-month horizon across 3000 simulation trials.\n\nScenario B highlights the trade-off between the loan amount borrowing capacity and financial security. By taking a smaller loan amount of 579679.5817863313 in Scenario B compared to 891814.7412097403 in Scenario A, the monthly EMI changes by an emi_delta of -10815.75 (from 30902.14 down to 20086.39). This increases the monthly surplus to 11922.56 and emergency reserves to 3.82 months. Consequently, Scenario B brings the stress score down to 49.27 (\"elevated\" band), representing a stress_score_delta of -22.65, a total_interest_delta of -77231.84, and a depletion_risk_delta of -0.2497 (dropping the simulated depletion probability to 3.0%).\n\nWhile Scenario A provides access to a larger original loan amount, it significantly heightens the risk of exhausting available funds if unexpected financial shocks occur. Note that these simulated figures are model outputs, not guaranteed predictions. Absolute probabilities depend on unvalidated shock-rate assumptions and should not be read as calibrated forecasts, though relative comparisons between scenarios are valid since they share identical model settings. I am an automated financial analysis explainer, not a licensed financial advisor.",
+    "faithfulness": {
+      "numbers_stated": 22,
+      "numbers_checked": 11,
+      "numbers_supported": 10,
+      "numbers_unsupported": 1,
+      "unsupported_values": [
+        100.0
+      ],
+      "faithfulness_rate": 0.9091,
+      "passed": false
+    }
+  },
+  {
+    "case": 13,
+    "question": null,
+    "explanation": "Choosing Scenario B over Scenario A significantly reduces monthly payment obligations and overall borrowing stress. Under Scenario B, the monthly loan payment is 16095.06 compared to 24761.63 in Scenario A, which reflects a change of -8666.57 in monthly EMI. Over the 7-year tenure, total interest charges decrease from 650769.83 under Scenario A to 423000.39 under Scenario B, representing a total interest difference of -227769.44.\n\nTaking out the smaller loan amount in Scenario B also improves your ongoing monthly cash flow. Scenario B lowers the debt-to-income ratio from 0.4516 to 0.3071 and increases the monthly surplus from 12229.05 to 20895.62. Consequently, the overall financial stress score drops by -22.34 points, shifting from an \"elevated\" score of 46.71 in Scenario A to a \"low\" score of 24.37 in Scenario B. The main driver of financial stress also changes from debt burden in Scenario A to interest load in Scenario B.\n\nThe reduction in debt also enhances overall financial stability under simulated market conditions. Scenario B supports an emergency fund of 7.77 months compared to 6.36 months in Scenario A. In a 24-month simulation across 3000 trials, the probability of savings depletion drops by -0.006, moving from 0.6% in Scenario A down to 0.0% in Scenario B. Furthermore, the simulated worst-case ending savings level is 454108.84 for Scenario B versus 246111.16 for Scenario A.\n\nPlease note that absolute probabilities depend on unvalidated shock-rate assumptions and should not be read as calibrated forecasts. Relative comparisons between these options are supported because both scenarios share identical underlying assumptions. I am an automated explainer of quantitative results, not a licensed financial advisor, and these outputs outline trade-offs rather than a recommendation for any specific financial product or action.",
+    "faithfulness": {
+      "numbers_stated": 23,
+      "numbers_checked": 11,
+      "numbers_supported": 11,
+      "numbers_unsupported": 0,
+      "unsupported_values": [],
+      "faithfulness_rate": 1.0,
+      "passed": true
+    }
+  },
+  {
+    "case": 14,
+    "question": "Should I be worried about taking the larger loan?",
+    "explanation": "Taking the larger loan of 784845.1049620875 (Scenario A) increases your financial stress and risk of running out of savings compared to the smaller loan (Scenario B). Scenario A carries a stress score of 40.67 out of 100 (in the moderate stress band), whereas Scenario B yields a stress score of 34.95, representing a stress score delta of -5.72. Furthermore, across 3000 simulation trials over a 24-month horizon, Scenario A shows an 11.0% simulated depletion probability compared to 6.6% in Scenario B, which reflects a depletion risk delta of -0.0446.\n\nLiquidity is the largest stress driver in both options, but the larger loan leaves you with less breathing room each month. With Scenario A, your monthly EMI is 16953.35 (total EMI including existing debt is 17380.37), resulting in a monthly surplus of 20046.19 and an emergency fund covering 0.98 months. Scenario B reduces the monthly EMI by an EMI delta of -5933.67 down to 11019.68, raising your monthly surplus to 25979.86 and your emergency fund to 1.1 months. Over the 5-year tenure, choosing Scenario B also cuts total interest from 232355.97 to 151031.39, which is a total interest delta of -81324.58.\n\nThe core trade-off is receiving a larger borrowing amount versus maintaining a stronger cash cushion. In Scenario A, the simulated worst-case ending savings drops to 135307.17, compared to 277715.25 in Scenario B, though both scenarios maintain relatively manageable debt-to-income ratios of 0.2443 and 0.1609, respectively. Please note that I am not a licensed financial advisor. Absolute probabilities depend on unvalidated shock-rate assumptions and should not be read as calibrated forecasts of future outcomes, though relative comparisons between scenarios remain useful since both share identical assumptions.",
+    "faithfulness": {
+      "numbers_stated": 26,
+      "numbers_checked": 14,
+      "numbers_supported": 13,
+      "numbers_unsupported": 1,
+      "unsupported_values": [
+        100.0
+      ],
+      "faithfulness_rate": 0.9286,
+      "passed": false
+    }
+  },
+  {
+    "case": 15,
+    "question": "Which option leaves me with the most breathing room?",
+    "explanation": "Scenario B offers more financial breathing room across monthly cash flow metrics. Under Scenario B, your standalone monthly EMI is 17280.26 compared to 26585.01 in Scenario A. When including existing debts, total monthly EMI is 28103.42 in Scenario B versus 37408.18 in Scenario A. As a result, Scenario B leaves a higher monthly surplus of 41626.97 compared to 32322.21 in Scenario A.\n\nComparing Scenario B directly against baseline Scenario A shows a monthly EMI delta of -9304.75 and a total interest delta of -162528.01. This lowers your debt-to-income ratio from 0.283 in Scenario A to 0.2126 in Scenario B. It also reduces your stress score by a delta of -5.71, moving your overall stress band from \"moderate\" (27.32) down to \"low\" (21.61). Furthermore, Scenario B provides an emergency fund buffer of 6.96 months of expenses versus 6.31 months in Scenario A.\n\nIn model simulations over a 24-month horizon across 3000 trials, Scenario B yields a simulated depletion probability of 0.0%, compared to 0.2% in Scenario A (a depletion risk delta of -0.002). The simulated worst-case ending savings is 945000.36 for Scenario B versus 721686.12 for Scenario A. Please note that absolute probabilities depend on unvalidated shock-rate assumptions and should not be read as calibrated forecasts, though relative comparisons between the two options are supported.\n\nThe core trade-off centers on loan size and monthly flexibility. Scenario B requires borrowing a smaller loan amount of 734977.7032142407 compared to 1130734.9280219087 in Scenario A. The smaller loan limits available upfront funds, but substantially lowers total interest costs and increases monthly cash flow flexibility. I am an automated explanation assistant presenting pre-computed financial analysis outputs, not a licensed financial advisor.",
+    "faithfulness": {
+      "numbers_stated": 24,
+      "numbers_checked": 13,
+      "numbers_supported": 13,
+      "numbers_unsupported": 0,
+      "unsupported_values": [],
+      "faithfulness_rate": 1.0,
+      "passed": true
+    }
+  },
+  {
+    "case": 16,
+    "question": "What is the main risk here?",
+    "explanation": "The primary risk in the baseline scenario (Scenario A) is a high debt burden, which drives the overall stress score to a \"high\" rating of 69.56 out of 100. In this scenario, monthly debt payments absorb a debt-to-income ratio of 0.4846, leaving a thin monthly surplus of 4,050.71 and an emergency fund covering 3.29 months of expenses.\n\nThis tight cash flow makes the baseline scenario vulnerable to financial shocks over a 24-month horizon. Across 3,000 simulation trials, Scenario A shows a 14.7% simulated probability of depleting savings, a simulated median of 3 negative months, and a worst-case ending savings balance of -55,131.33.\n\nBorrowing less in Scenario B alters these trade-offs significantly. Total monthly EMI including existing debts drops to 16,842.04 (an EMI delta of -8,463.04 compared to Scenario A). This expands the monthly surplus to 12,513.75, reduces the stress score by 28.68 down to a moderate 40.88, and lowers the simulated depletion risk by 0.125 down to 2.2%. In Scenario B, the largest stress driver shifts from debt burden to the loan's interest load.\n\nPlease keep in mind that I am explaining quantitative model results and am not a licensed financial advisor. These simulated probabilities rely on unvalidated shock-rate assumptions and should not be read as guaranteed forecasts. Relative comparisons between scenarios are valid, however, as both scenarios share the exact same underlying simulation settings.",
+    "faithfulness": {
+      "numbers_stated": 17,
+      "numbers_checked": 7,
+      "numbers_supported": 6,
+      "numbers_unsupported": 1,
+      "unsupported_values": [
+        100.0
+      ],
+      "faithfulness_rate": 0.8571,
+      "passed": false
+    }
+  },
+  {
+    "case": 17,
+    "question": null,
+    "explanation": "Choosing Scenario B over the baseline Scenario A reduces the monthly EMI by 8709.47 and cuts total interest by 207098.4 over a 7-year tenure. Scenario A involves a larger loan amount of 1498562.985158882 with a monthly loan EMI of 24884.2, leading to total interest charges of 591709.64. In contrast, Scenario B reflects a lower loan amount of 974065.9403532734 with a monthly loan EMI of 16174.73, resulting in total interest charges of 384611.24. Both options carry an annual interest rate of 10.008107503410262%.\n\nThe reduced monthly obligation in Scenario B provides greater breathing room in your ongoing budget. Including existing obligations, Scenario A requires a total monthly debt payment of 31478.22, resulting in a debt-to-income ratio of 0.2574, a monthly surplus of 58955.96, and emergency savings covering 1.44 months. Under Scenario B, total monthly debt payments fall to 22768.75, which lowers the debt-to-income ratio to 0.1862, increases the monthly surplus to 67665.43, and expands the emergency fund buffer to 1.67 months.\n\nLooking at stress metrics and risk simulations across 3000 trials over a 24-month horizon, Scenario B drops the overall financial stress score by 2.56 points (from 36.06 down to 33.5, though both sit in the moderate stress band with liquidity as the primary driver). In these simulations, Scenario A shows a 2.5% depletion probability with 1 median negative month, while Scenario B shows a 1.2% depletion probability (a depletion risk delta of -0.0133) with 0 median negative months. Please note that absolute probabilities depend on unvalidated shock-rate assumptions and should not be read as calibrated forecasts; relative comparisons between scenarios are supported since all scenarios share identical assumptions.\n\nThe core trade-off centers on borrowing capacity versus ongoing risk and total cost. Scenario A supplies more capital upfront but requires a total repayment of 2090272.63 and leaves a simulated worst-case ending savings of 846005.46. Scenario B provides less capital upfront, requiring a total repayment of 1358677.18 while leaving a higher worst-case ending savings of 1055032.74. I am an AI explainer, not a licensed financial advisor, and do not recommend specific loan products or options.",
+    "faithfulness": {
+      "numbers_stated": 32,
+      "numbers_checked": 17,
+      "numbers_supported": 17,
+      "numbers_unsupported": 0,
+      "unsupported_values": [],
+      "faithfulness_rate": 1.0,
+      "passed": true
+    }
+  },
+  {
+    "case": 18,
+    "question": "Should I be worried about taking the larger loan?",
+    "explanation": "Taking the larger loan in Scenario A results in a stress score of 24.52 out of 100, placing it in the \"low\" stress band. While overall stress remains low in both options, the smaller loan in Scenario B reduces this financial stress score by a delta of -4.52 down to 20.0 out of 100. Both scenarios identify liquidity as the largest driver of stress.\n\nWith the larger loan amount of 491697.8879501039, your monthly loan payment (EMI) is 13066.39, resulting in a debt-to-income ratio of 0.3023 and a monthly surplus of 32671.26. In comparison, Scenario B reduces the monthly EMI by a delta of -4573.24 down to 8493.15, leaving a higher monthly surplus of 37244.5. Additionally, Scenario B reduces total interest paid by a delta of -47421.07 (from 135488.72 in Scenario A down to 88067.65) and raises your emergency fund coverage from 4.57 months to 5.11 months.\n\nIn a 24-month simulation across 3000 trials, the depletion probability is 0.2% for Scenario A compared to 0.0% for Scenario B, representing a depletion risk delta of -0.0014. Under worst-case simulation outcomes, ending savings are 547454.09 in Scenario A versus 657211.85 in Scenario B. Note that absolute probabilities depend on unvalidated shock-rate assumptions and should be viewed as model outputs under set conditions rather than guaranteed forecasts. However, relative comparisons between the scenarios are valid because both rely on identical model assumptions.\n\nThe decision comes down to trade-offs: taking the larger loan provides more funds upfront, but requires paying more total interest, keeping a lower monthly surplus, and slightly increasing stress metrics. I am explaining these quantitative outputs to highlight these trade-offs; I am not a licensed financial advisor, and this analysis is not a recommendation for any specific loan size.",
+    "faithfulness": {
+      "numbers_stated": 24,
+      "numbers_checked": 14,
+      "numbers_supported": 12,
+      "numbers_unsupported": 2,
+      "unsupported_values": [
+        100.0,
+        100.0
+      ],
+      "faithfulness_rate": 0.8571,
+      "passed": false
+    }
+  },
+  {
+    "case": 19,
+    "question": "Which option leaves me with the most breathing room?",
+    "explanation": "Scenario B provides significantly more monthly breathing room compared to Scenario A. In Scenario B, your monthly surplus is 15804.34 with a monthly loan EMI of 7626.77, whereas Scenario A leaves you with a monthly surplus of 11697.62 alongside an EMI of 11733.49. Looking at your total monthly debt payments (including existing obligations), Scenario B lowers this commitment from 13264.1 in Scenario A to 9157.38, reflecting an emi_delta of -4106.72.\n\nThis reduced monthly obligation lowers your debt-to-income ratio from 0.3011 in Scenario A to 0.2079 in Scenario B. Consequently, Scenario B reduces your financial stress score from an \"elevated\" 46.04 down to a \"moderate\" 38.06, which is a stress_score_delta of -7.98. In a 24-month simulation across 3000 trials, Scenario B shows a simulated depletion probability of 12.6% compared to 20.9% in Scenario A (a depletion_risk_delta of -0.083), while resulting in a simulated worst-case ending savings of 125782.9 compared to 27221.62 in Scenario A.\n\nThe main trade-off is that Scenario B involves a smaller principal loan amount of 284885.25288124394 compared to Scenario A's 438285.004432683. By borrowing less, Scenario B also reduces your total interest over the 4-year tenure from 124922.43 to 81199.57, representing a total_interest_delta of -43722.86. However, liquidity remains the primary stress driver in both options, with emergency funds covering 0.63 months of expenses in Scenario A and 0.72 months in Scenario B.\n\nPlease note that these simulated probabilities are model outputs under specified assumptions and not guarantees or forecasts of future outcomes. Absolute probabilities depend on unvalidated shock-rate assumptions, though relative comparisons between Scenario A and Scenario B are supported because both share identical simulation settings. I am an automated financial analysis explainer, not a licensed financial advisor.",
+    "faithfulness": {
+      "numbers_stated": 27,
+      "numbers_checked": 15,
+      "numbers_supported": 15,
+      "numbers_unsupported": 0,
+      "unsupported_values": [],
+      "faithfulness_rate": 1.0,
+      "passed": true
+    }
+  },
+  {
+    "case": 20,
+    "question": "What is the main risk here?",
+    "explanation": "Based on the financial model output, the primary risk driver in both scenarios is **liquidity**. Both options leave a relatively narrow cash cushion, with emergency fund coverage standing at 1.56 months in Scenario A and 1.73 months in Scenario B. Because liquidity is the largest stress driver, unexpected cash needs or temporary income disruptions represent the main vulnerability.\n\nBoth scenarios fall into a \"moderate\" stress band. In Scenario A, the stress score is 38.04 out of 100, and the simulated depletion probability over a 24-month horizon (based on 3,000 trials) is 5.6%. In Scenario B, the stress score is 33.52 out of 100, with a simulated depletion probability of 3.6%. In both cases, the simulated median negative months is 1. Please note that absolute probabilities depend on unvalidated shock-rate assumptions and should not be read as calibrated forecasts. However, relative comparisons are supported because both scenarios share identical assumptions.\n\nComparing the two scenarios highlights clear financial trade-offs. Choosing Scenario B over baseline Scenario A reduces the monthly loan EMI by -4612.26 (from 13177.88 down to 8565.62) and total interest by -94694.37 (from 270555.24 down to 175860.87). This leads to a stress score delta of -4.52 and a depletion risk delta of -0.0194. The trade-off centers on accepting a lower loan amount (440864.01990022644 in B versus 678252.3383080406 in A) in exchange for a higher monthly surplus (27910.99 in B versus 23298.73 in A) and lower debt-to-income ratio (0.1712 in B versus 0.2349 in A).\n\nI am an AI assistant explaining these quantitative findings, not a licensed financial advisor. This analysis presents the computed model outputs to help you evaluate the trade-offs rather than providing a recommendation or forecast.",
+    "faithfulness": {
+      "numbers_stated": 25,
+      "numbers_checked": 13,
+      "numbers_supported": 11,
+      "numbers_unsupported": 2,
+      "unsupported_values": [
+        100.0,
+        100.0
+      ],
+      "faithfulness_rate": 0.8462,
+      "passed": false
+    }
+  }
+]

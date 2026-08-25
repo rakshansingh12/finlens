@@ -240,4 +240,44 @@ The next stage should focus on strengthening the evidence rather than adding mor
 5. **Evaluate scenario recommendations**
    - Compare alternative loan amounts, tenures, and down-payment strategies.
 
-6. **Only after the analytical engine is stable, add the LLM explanation layer.**
+6. (venv) rakshansingh@Rakshans-MacBook-Air finlens % python -m scripts.faithfulness_study   
+Running 20 explanation cases...
+
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+  case  1: 15/15 = 100.0%
+  case  2: 12/12 = 100.0%
+  case  3: 15/16 = 93.8%  unsupported: [100.0]
+  case  4: 9/11 = 81.8%  unsupported: [100.0, 100.0]
+  case  5: 15/15 = 100.0%
+  case  6: 14/16 = 87.5%  unsupported: [100.0, 100.0]
+  case  7: 13/14 = 92.9%  unsupported: [100.0]
+  case  8: 9/9 = 100.0%
+  case  9: 17/19 = 89.5%  unsupported: [100.0, 100.0]
+  case 10: 11/13 = 84.6%  unsupported: [100.0, 100.0]
+  case 11: 13/13 = 100.0%
+  case 12: 10/11 = 90.9%  unsupported: [100.0]
+  case 13: 11/11 = 100.0%
+  case 14: 13/14 = 92.9%  unsupported: [100.0]
+  case 15: 13/13 = 100.0%
+  case 16: 6/7 = 85.7%  unsupported: [100.0]
+  case 17: 17/17 = 100.0%
+  case 18: 12/14 = 85.7%  unsupported: [100.0, 100.0]
+  case 19: 15/15 = 100.0%
+  case 20: 11/13 = 84.6%  unsupported: [100.0, 100.0]
+
+==========================================================
+RQ-C: LLM EXPLANATION FAITHFULNESS
+==========================================================
+Cases evaluated        : 20
+Mean faithfulness rate : 93.5%
+Median                 : 93.3%
+Minimum                : 81.8%
+Cases with 100% rate   : 9 / 20
+Cases with any failure : 11 / 20
+
+Most common unsupported values:
+          100.00  x17
+
+Note: the strict checker flags scale references (e.g. the literal
+100 in 'out of 100') as unsupported. These are false positives and
+are retained rather than special-cased -- see docs/findings.md.
